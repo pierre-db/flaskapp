@@ -1,6 +1,8 @@
 # All roads lead to Rome
 This is a web app built in Python with `Flask`. It implements a simple Wikipedia game.
 
+![screenshot](screenshot/screenshot.png)
+
 ## The goal
 The goal of the game is to find the Wikipedia page for the article 'Rome' as fast as possible. You start by giving the page from which you wish to start. The app then lists the first 10 link form the page that you chose. You select one of the links and hit 'Next page' to go to the corrresponding page. The game end when you reach the page for 'Rome'.
 
