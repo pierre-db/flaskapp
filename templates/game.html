@@ -1,0 +1,42 @@
+    {% extends "index.html" %}
+    {% block body %}
+    <div class="wordart rainbow center"><h1>All roads lead to Rome</h1></div>
+    <div class="window">
+      <div class="title-bar">
+        <div class="title-bar-text">Game</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <p>Reach the <em>Rome</em> page as quickly as possible.</p>
+            <form method="POST" action="/move">
+              <fieldset>
+                <legend>Top 10 links on this page:</legend>
+                {% for i, l in links %}
+                  <div class="window-body">
+                    <input type="radio" name="destination" id="answer{{i}}" value="{{l}}"
+                      {% if i == 0 %}
+                        checked
+                      {% endif %}> <label for="answer{{i}}">{{l}}</label>
+                  </div>
+                {% endfor %}
+                <input type="hidden" name="score" value="{{ session.score }}">
+              </fieldset>
+              <p></p>
+              <section class="field-row" style="justify-content: flex-end">
+                  <button type="submit" formaction='/' name="reset" value="reset" id="reset" title="Cancel the current game and return to the home page"
+                  onclick="javascript: return confirm(this.title+' ?');">Cancel</button>
+                <button id="move" type="submit">Next page</button>
+              </section>
+            </form>
+        </div>
+        <div class="status-bar">
+          <p class="status-bar-field">Requested page: {{ session.article }}</p>
+          <p class="status-bar-field">Current page: {{ title }}</p>
+          <p class="status-bar-field">Score: {{ score }}</p>
+        </div>
+      </div>
+    {% endblock %}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="static/98.css">
+    <link rel="stylesheet" type="text/css" href="static/wordart.css">
+    <link rel="stylesheet" type="text/css" href="static/docs/docs.css">
+    <title>All roads lead to Rome</title>
+  </head>
+  <body>
+      {% block body %}
+      <div class="wordart rainbow center"><h1>All roads lead to Rome</h1></div>
+      <div class="window">
+        <div class="title-bar">
+          <div class="title-bar-text">Start a new game</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="window-body">
+          <p>Goal of the game: reach the <em>Rome</em> page as quickly as possible from the links in the Wikipedia articles.</p>
+          <form method="post" action="/new-game">
+            <label for="start">Start page:</label>
+            <input type="text" name="start" id="start" placeholder="title of a page">
+            <section class="field-row" style="justify-content: flex-end">
+              <button type="submit">Start!</button>
+            </section>
+          </form>
+        </div>
+       </div>
+       <br>
+      {% for category, message in get_flashed_messages(with_categories=true) %}
+      <div class="window" id="message">
+        <div class="title-bar">
+          <div class="title-bar-text">Start a new game</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="window-body">
+          <p class="{{category}}">{{ message }}</p>
+          <section class="field-row" style="justify-content: flex-end">
+            <button onclick="javascript: document.getElementById('message').style.display = 'none';">Ok</button>
+          </section>
+        </div>
+      </div>
+      {% endfor %}
+      {% endblock %}
+  </body>
+</html>
